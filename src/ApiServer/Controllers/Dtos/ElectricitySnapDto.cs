@@ -2,26 +2,26 @@
 
 namespace ApiServer.Controllers.Dtos
 {
-    internal class ElectricitySnapDto
+    public class ElectricitySnapDto
     {
         public string Id { get; set; } = "";
         public int DayConsumption { get; set; }
         public int NightConsumption { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime? DateTime { get; set; }
 
-        internal ElectricitySnap ToDomain()
+        public ElectricitySnap ToDomain()
         {
             return new ElectricitySnap(Id, DayConsumption, NightConsumption, DateTime);
         }
 
-        internal static ElectricitySnapDto FromDomin(ElectricitySnap snap)
+        public static ElectricitySnapDto FromDomin(ElectricitySnap snap)
         {
             return new ElectricitySnapDto()
             {
                 Id = snap.Id.ToString(),
                 DayConsumption = snap.DayConsumption,
                 NightConsumption = snap.NightConsumption,
-                DateTime = snap.DateTime
+                DateTime = snap.RecordTime
             };
         }
     }

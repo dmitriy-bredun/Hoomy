@@ -31,7 +31,7 @@ namespace SDK.Repositories
             return record.ToDomain();
         }
 
-        public async Task<IEnumerable<ElectricitySnap>> Find(ElectricitySnapSearchCriteria filter)
+        public async Task<IEnumerable<ElectricitySnap>> Get(ElectricitySnapSearchCriteria filter)
         {
             var records = await FileSerializer.ReadAsync<ElectricitySnapDto>();
 
@@ -51,20 +51,19 @@ namespace SDK.Repositories
 
             existedRecord.DayConsumption = snap.DayConsumption;
             existedRecord.NightConsumption = snap.NightConsumption;
-            existedRecord.DateTime = snap.DateTime;
+            existedRecord.DateTime = snap.RecordTime;
 
             await FileSerializer.WriteAsync(records);
         }
 
-        public async Task Delete(ElectricitySnap snap)
+        public async Task Delete(string id)
         {
             var records = await FileSerializer.ReadAsync<ElectricitySnapDto>();
 
-            var idValue = snap.Id.ToString();
-            var existedRecordToDelete = records.FirstOrDefault(rec => rec.Id == idValue);
+            var existedRecordToDelete = records.FirstOrDefault(rec => rec.Id == id);
             if (existedRecordToDelete == null)
             {
-                throw new Exception($"Record with Id = {idValue} does not exist!");
+                throw new Exception($"Record with Id = {id} does not exist!");
             }
 
             records.ToList().Remove(existedRecordToDelete);

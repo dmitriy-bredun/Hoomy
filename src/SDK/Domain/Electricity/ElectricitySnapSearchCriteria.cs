@@ -1,15 +1,8 @@
 ﻿namespace SDK.Domain.Electricity
 {
-    public enum ElectricityReportType
-    {
-        Year,
-        Month,
-        Week
-    }
-
     public class ElectricitySnapSearchCriteria
     {
-        public ElectricityReportType PeriodType { get; set; }
-        public int Number { get; set; }
+        public DateTime? DateFrom { get; set; } = null;
+        public DateTime? DateTo { get; set; } = null;
     }
 }

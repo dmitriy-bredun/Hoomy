@@ -7,12 +7,12 @@ using SDK.Domain.Electricity;
 
 namespace SDK.Repositories
 {
-    interface IElectricitySnapsRepository
+    public interface IElectricitySnapsRepository
     {
         Task Create(ElectricitySnap snap);
         Task<ElectricitySnap?> Get(string id);
-        Task<IEnumerable<ElectricitySnap>> Find(ElectricitySnapSearchCriteria filter);
+        Task<IEnumerable<ElectricitySnap>> Get(ElectricitySnapSearchCriteria filter);
         Task Update(ElectricitySnap snap);
-        Task Delete(ElectricitySnap snap);
+        Task Delete(string id);
     }
 }

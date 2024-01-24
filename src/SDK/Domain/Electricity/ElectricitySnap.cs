@@ -5,13 +5,13 @@
         public Guid Id { get; }
         public int DayConsumption { get; }
         public int NightConsumption { get; }
-        public DateTime DateTime { get; }
+        public DateTime? RecordTime { get; }
 
-        public ElectricitySnap(int dayConsumption, int nightConsumption, DateTime dateTime)
+        public ElectricitySnap(int dayConsumption, int nightConsumption, DateTime? dateTime = null)
             : this(null, dayConsumption, nightConsumption, dateTime)
         {  }
 
-        public ElectricitySnap(string id, int dayConsumption, int nightConsumption, DateTime dateTime) 
+        public ElectricitySnap(string id, int dayConsumption, int nightConsumption, DateTime? dateTime) 
         { 
             if (id == null)
             {
@@ -20,7 +20,7 @@
 
             DayConsumption = dayConsumption;
             NightConsumption = nightConsumption;
-            DateTime = dateTime;
+            RecordTime = dateTime.HasValue ? dateTime : DateTime.Now;
         }
 
 

@@ -7,7 +7,7 @@ namespace SDK.Repositories.Dtos
         public string Id { get; set; } = "";
         public int DayConsumption { get; set; }
         public int NightConsumption { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime? DateTime { get; set; }
 
         internal ElectricitySnap ToDomain()
         {
@@ -21,7 +21,7 @@ namespace SDK.Repositories.Dtos
                 Id = snap.Id.ToString(),
                 DayConsumption = snap.DayConsumption,
                 NightConsumption = snap.NightConsumption,
-                DateTime = snap.DateTime
+                DateTime = snap.RecordTime
             };
         }
     }
