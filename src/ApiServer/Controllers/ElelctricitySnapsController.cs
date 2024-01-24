@@ -1,6 +1,4 @@
 ﻿using ApiServer.Controllers.Dtos;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using SDK.Domain.Electricity;
 using SDK.Repositories;
@@ -8,7 +6,7 @@ using SDK.Repositories;
 namespace ApiServer.Controllers
 {
     [ApiController]
-    public class ElelctricitySnapsController : Controller
+    public class ElelctricitySnapsController : ControllerBase
     {
         private readonly IElectricitySnapsRepository electricitySnapsRepository;
 

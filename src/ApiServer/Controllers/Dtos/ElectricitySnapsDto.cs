@@ -2,7 +2,7 @@
 {
     public class ElectricitySnapsDto
     {
-        public IEnumerable<ElectricitySnapDto> ElectricitySnaps { get; set; }
+        public required IEnumerable<ElectricitySnapDto> ElectricitySnaps { get; set; }
         public uint TotalCount { get; set; }
     }
 }

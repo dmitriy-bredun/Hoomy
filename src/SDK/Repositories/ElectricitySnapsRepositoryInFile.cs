@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SDK.Domain.Electricity;
+﻿using SDK.Domain.Electricity;
 using SDK.Repositories.Dtos;
 using SDK.Tools;
 
@@ -13,10 +8,12 @@ namespace SDK.Repositories
     {
         public async Task Create(ElectricitySnap snap)
         {
-            var snapDto = ElectricitySnapDto.FromDomin(snap);
-            var record = new List<ElectricitySnapDto>() { snapDto };
+            var records = (await FileSerializer.ReadAsync<ElectricitySnapDto>()).ToList();
 
-            await FileSerializer.WriteAsync(record);
+            var snapDto = ElectricitySnapDto.FromDomin(snap);
+            records.Add(snapDto);
+
+            await FileSerializer.WriteAsync(records);
         }
 
         public async Task<ElectricitySnap?> Get(string id)
@@ -58,7 +55,7 @@ namespace SDK.Repositories
 
         public async Task Delete(string id)
         {
-            var records = await FileSerializer.ReadAsync<ElectricitySnapDto>();
+            var records = (await FileSerializer.ReadAsync<ElectricitySnapDto>()).ToList();
 
             var existedRecordToDelete = records.FirstOrDefault(rec => rec.Id == id);
             if (existedRecordToDelete == null)
@@ -66,7 +63,8 @@ namespace SDK.Repositories
                 throw new Exception($"Record with Id = {id} does not exist!");
             }
 
-            records.ToList().Remove(existedRecordToDelete);
+            var res = records.Remove(existedRecordToDelete);
+
             await FileSerializer.WriteAsync(records);
         }
     }

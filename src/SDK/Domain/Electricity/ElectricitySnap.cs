@@ -12,17 +12,11 @@
         {  }
 
         public ElectricitySnap(string id, int dayConsumption, int nightConsumption, DateTime? dateTime) 
-        { 
-            if (id == null)
-            {
-                Id = Guid.NewGuid();
-            }
-
+        {
+            Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid() : Guid.Parse(id);
             DayConsumption = dayConsumption;
             NightConsumption = nightConsumption;
             RecordTime = dateTime.HasValue ? dateTime : DateTime.Now;
         }
-
-
     }
 }
