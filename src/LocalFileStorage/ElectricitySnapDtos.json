@@ -1,0 +1,20 @@
+[
+  {
+    "Id": "5000337e-c2fd-41df-9861-6f616d1aca14",
+    "DayConsumption": 400,
+    "NightConsumption": 300,
+    "DateTime": "2024-01-24T22:42:51.67Z"
+  },
+  {
+    "Id": "9e330902-370e-4cfe-89e6-82e79e124515",
+    "DayConsumption": 5555,
+    "NightConsumption": 5555,
+    "DateTime": "2024-01-24T23:22:11.036Z"
+  },
+  {
+    "Id": "ac55b1e0-2ad4-4104-80bb-f1b6f18c1199",
+    "DayConsumption": 1223,
+    "NightConsumption": 3221,
+    "DateTime": "2024-01-24T23:01:38.956Z"
+  }
+]
